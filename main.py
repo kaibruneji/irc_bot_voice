@@ -41,6 +41,8 @@ num_users = 0
 question_voice = 'сколько будет от десяти отнять шесть?(напишите буквами)'
 answer_voice = 'четыре'
 
+
+
 #-------Major_while-------------------------
 
 while True:
@@ -90,13 +92,18 @@ while True:
             send('MODE '+channel+' +v '+name_join+'\r\n')
 
     if 'PRIVMSG '+botName+' :'+answer_voice+'\r\n' in data:
-        send('MODE '+channel+' +v '+name+'\r\n')
+        name_in_table = (name,)
         conn = sqlite3.connect('users.db')
-        c = conn.cursor()
-        purchse_users_db = [(name, 'voice')]
-        c.executemany('INSERT INTO stocks VALUES (?,?)', purchse_users_db)
-        conn.commit()
-        conn.close
+        c = conn.cursor()        
+        c.execute('SELECT * FROM stocks WHERE name=?', name_in_table)                
+        if c.fetchone() == None:
+            send('MODE '+channel+' +v '+name+'\r\n')
+            conn = sqlite3.connect('users.db')
+            c = conn.cursor()
+            purchse_users_db = [(name, 'voice')]
+            c.executemany('INSERT INTO stocks VALUES (?,?)', purchse_users_db)
+            conn.commit()
+            conn.close
 
         # Out command.  
     if data.find('PRIVMSG '+channel+' :!бот выйди') != -1 and name == masterName:

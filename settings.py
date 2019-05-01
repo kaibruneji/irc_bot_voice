@@ -3,7 +3,7 @@ port = 7770
 channel = '#magi'
 botName = 'defender'
 masterName = 'Кай'
-password = 'xxx'
+password = '077777'
 
 def settings(x):
     if x == 'network':
