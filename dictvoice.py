@@ -1,10 +1,3 @@
-﻿network = 'irc.tambov.ru'
-port = 7770
-channel = '#magi'
-botName = 'defender'
-masterName = 'Кай'
-password = input('Input password for master: ')
-
 dict_voice_quest = {
   'Как называется звезда нашей солнечной системы?':'солнце',
   'Как называется естественный спутник планеты Земля?':'луна',
@@ -24,18 +17,6 @@ dict_voice_quest = {
   'В комнате есть: стены, потолок и...?(по чему ходят)':'пол'
   }
 
-def settings(x):
-    if x == 'network':
-        return network
-    elif x == 'port':
-        return port
-    elif x == 'botName':
-        return botName
-    elif x == 'masterName':
-        return masterName
-    elif x == 'password':
-        return password   
-    elif x == 'channel':
-        return channel
-    elif x == 'dict_voice_quest':
+def dict_voice_quest(x):    
+    if x == 'dict_voice_quest':
         return dict_voice_quest
