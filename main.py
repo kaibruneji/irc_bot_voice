@@ -1,3 +1,6 @@
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
+
 #-------Import modules---------------------
 
 import socket
@@ -5,7 +8,6 @@ import sys
 import time
 import requests
 import settings
-import dictvoice
 import sqlite3
 import random
 
