@@ -1,9 +1,18 @@
-﻿network = 'irc.tambov.ru'
+﻿import json
+
+network = 'irc.tambov.ru'
 port = 7770
 channel = '#magi'
 botName = 'defender'
 masterName = 'Кай'
-password = input('Input password for master: ')
+
+#----input_password-----
+with open('code.json', 'r') as code_json:
+    code=code_json.read()
+
+obj = json.loads(code)
+
+password = str(obj['password'])
 
 dict_voice_quest = {
   'Как называется звезда нашей солнечной системы?':'солнце',
