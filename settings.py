@@ -2,7 +2,7 @@
 
 network = 'irc.tambov.ru'
 port = 7770
-channel = '#botest'
+channel = '#magi'
 botName = 'defender'
 masterName = 'Кай'
 
