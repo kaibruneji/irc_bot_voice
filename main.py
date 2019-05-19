@@ -68,10 +68,10 @@ while True:
 
     #-----------GET num_users and give voice----------
     
-    if 'PRIVMSG ' in data and ':!defender off' in data and name == masterName:
+    if 'PRIVMSG ' in data and ':!'+botName+' off' in data and name == masterName:
         botOnOff = False
 
-    elif 'PRIVMSG ' in data and ':!defender on' in data and name == masterName:
+    elif 'PRIVMSG ' in data and ':!'+botName+' on' in data and name == masterName:
         botOnOff = True
 
     if botOnOff == True:
