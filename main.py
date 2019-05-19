@@ -122,7 +122,7 @@ while True:
                 conn.close
             
     # Out command.  
-    if data.find('PRIVMSG '+channel+' :!defender quit') != -1 and name == masterName:
+    if data.find('PRIVMSG '+channel+' :!'+botName+' quit') != -1 and name == masterName:
         send('PRIVMSG '+channel+' :Хорошо, всем счастливо оставаться!\r\n')
         send('QUIT\r\n')
         sys.exit()
