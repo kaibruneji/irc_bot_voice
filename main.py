@@ -68,11 +68,12 @@ while True:
 
     #-----------GET num_users and give voice----------
     
-    if 'PRIVMSG ' in data and ':!'+botName+' off' in data and name == masterName:
+    if name == masterName and 'PRIVMSG ' in data and ':!'+botName+' off' in data:
         botOnOff = False
 
-    elif 'PRIVMSG ' in data and ':!'+botName+' on' in data and name == masterName:
+    elif name == masterName and 'PRIVMSG ' in data and ':!'+botName+' on' in data:
         botOnOff = True
+        send('MODE '+channel+' -l\r\n')
 
     if botOnOff == True:
         if ' QUIT :' in data or ' PART '+channel+' :' \
