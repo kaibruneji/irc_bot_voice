@@ -70,11 +70,11 @@ while True:
     
     if name == masterName and 'PRIVMSG ' in data and ':!'+botName+' off' in data:
         botOnOff = False
+        send('MODE '+channel+' -l\r\n')
 
     elif name == masterName and 'PRIVMSG ' in data and ':!'+botName+' on' in data:
         botOnOff = True
-        send('MODE '+channel+' -l\r\n')
-
+        
     if botOnOff == True:
         if ' QUIT :' in data or ' PART '+channel+' :' \
            in data and 'PRIVMSG' not in data or 'PRIVMSG '+channel+' :!NAMES\r\n' in \
