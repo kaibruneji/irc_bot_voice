@@ -1,0 +1,4 @@
+commands for bot from his master (masterName):
+<!nick_bot off> - off bot work with change mode channel and change count of users 
+<!nick_bot on> - on bot
+<!nick_bot quit> - bot quit from IRC
