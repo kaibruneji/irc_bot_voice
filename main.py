@@ -51,7 +51,8 @@ dict_voice_quest = settings.settings('dict_voice_quest')
 while True:
     try:
         data = irc.recv(2048).decode("UTF-8")
-    except:
+    except UnicodeDecodeError:
+        print('ERROR: UnicodeDecodeError')
         continue
     # Ping-pong.
     if data.find('PING') != -1:
@@ -63,34 +64,34 @@ while True:
         message = data.split('PRIVMSG',1)[1].split(':',1)[1].strip().lower()
     try:
         ip_user=data.split('@',1)[1].split(' ',1)[0]
-    except:
+    except IndexError:
         print('no name')
 
     #-----------GET num_users and give voice----------
     
     if name == masterName and 'PRIVMSG ' in data and ':!'+botName+' off' in data:
         botOnOff = False
-        send('MODE '+channel+' -l\r\n')
+        #send('MODE '+channel+' -l\r\n')
         send('MODE '+channel+' -m\r\n')
 
     elif name == masterName and 'PRIVMSG ' in data and ':!'+botName+' on' in data:
         botOnOff = True
-        send('NAMES '+channel+'\r\n')
+        #send('NAMES '+channel+'\r\n')
         send('MODE '+channel+' +m\r\n')
         
-    if botOnOff == True:
-        if ' QUIT :' in data or ' PART '+channel+' :' \
-           in data and 'PRIVMSG' not in data or 'PRIVMSG '+channel+' :!NAMES\r\n' in \
-           data and name == masterName:
-            send('NAMES '+channel+'\r\n')    
+    #if botOnOff == True:
+     #   if ' QUIT :' in data or ' PART '+channel+' :' \
+      #     in data and 'PRIVMSG' not in data or 'PRIVMSG '+channel+' :!NAMES\r\n' in \
+       #    data and name == masterName:
+        #    send('NAMES '+channel+'\r\n')    
        
-    if botName+' = '+channel+' :' in data and 'PRIVMSG' not in data:
-        num_users = len(data.split(channel+' :')[1].split(' \r\n')[0].split(' '))
-        num_users += 1
-        num_users_str = str(num_users)
-        if botOnOff == True:
-            send('MODE '+channel+' +l '+num_users_str+'\r\n')        
-            print('I GOT USER NUM_LIST+1 : '+num_users_str+'\r\n')
+    #if botName+' = '+channel+' :' in data and 'PRIVMSG' not in data:
+     #   num_users = len(data.split(channel+' :')[1].split(' \r\n')[0].split(' '))
+      #  num_users += 1
+       # num_users_str = str(num_users)
+        #if botOnOff == True:
+         #   send('MODE '+channel+' +l '+num_users_str+'\r\n')        
+          #  print('I GOT USER NUM_LIST+1 : '+num_users_str+'\r\n')
             
     if ' JOIN :'+channel in data and 'PRIVMSG' not in data:
         name_join = data.split('!')[0].split(':')[1]
@@ -101,8 +102,8 @@ while True:
         in_name_table = c.fetchone()
         voice_table_for_work = 'voice'
         voice_table_for_work_2 = (voice_table_for_work,)
-        if botOnOff == True:
-            send('NAMES '+channel+'\r\n')
+        #if botOnOff == True:
+         #   send('NAMES '+channel+'\r\n')
         if in_name_table == None:
             question_voice = random.choice(list(dict_voice_quest))
             send('PRIVMSG '+name_join+' :Что бы получить войс ответьте на вопрос: \
